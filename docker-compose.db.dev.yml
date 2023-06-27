@@ -1,0 +1,17 @@
+version: "3"
+services:
+  postgres:
+    image: postgres:14.6
+    restart: always
+    environment:
+      POSTGRES_USER: mymy
+      POSTGRES_PASSWORD: mymy123
+      POSTGRES_DB: channels_test
+      POSTGRES_HOST: 192.168.2.100
+      POSTGRES_PORT: 5432
+    ports:
+      - "5120:5432"
+    expose:
+      - 5120
+    volumes:
+      - ./db/postgres/data:/var/lib/postgresql/data/

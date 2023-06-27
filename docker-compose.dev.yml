@@ -1,0 +1,21 @@
+version: "3"
+services:
+  channels_test:
+    container_name: channels_test
+    build:
+      context: ./backend
+      dockerfile: ./docker/Dockerfile
+    environment:
+      - DEBUG_MODE=True
+      - POSTGRES_DB=channels_test
+      - POSTGRES_USER=mymy
+      - POSTGRES_PASSWORD=mymy123
+      - POSTGRES_HOST=192.168.2.100
+      - POSTGRES_PORT=5120
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./backend:/app
+    ports:
+      - "8000:8000"
+    expose:
+      - 8000
