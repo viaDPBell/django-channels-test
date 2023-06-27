@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ji">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+
+    <title>Real-time app with Django channels</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-6 mx-auto mt-5">
+          <h1 id="app">{{text}}</h1>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    const ws = new WebSocket("ws://192.168.2.100:8000/ws/some_url");
+
+    ws.onopen = () => {
+      console.log("웹소켓 서버와 접속");
+    };
+
+    ws.onmessage = (event) => {
+      const message = event.data;
+
+      console.log("메세지 수신: ", message);
+    };
+
+    ws.onerror = () => {
+      console.error("웹소켓 오류 발생");
+    };
+
+    ws.onclose = (event) => {
+      console.log("onClose ??? ", event);
+      if (event.wasClaen) {
+        console.log("ws.close()에 의한 연결 끊기");
+      } else {
+        console.log("웹소켓 서버와의 네트워크 단절로 인한 끊김");
+      }
+    };
+  </script>
+</html>

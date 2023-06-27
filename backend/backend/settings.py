@@ -54,8 +54,9 @@ INSTALLED_APPS = [
     "corsheaders",
     "rest_framework",
     # local apps
-    # "chatexample",
     "account",
+    # channels test apps
+    "integers",
 ]
 
 MIDDLEWARE = [
@@ -74,7 +75,7 @@ ROOT_URLCONF = "backend.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR.joinpath("templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
