@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     "account",
     # channels test apps
     "integers",
+    "chat",
 ]
 
 MIDDLEWARE = [
@@ -90,6 +91,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "backend.wsgi.application"
 ASGI_APPLICATION = "backend.asgi.application"
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [{"host": "192.168.2.100", "port": 4120, "password": "channelstest"}],
+        },
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
